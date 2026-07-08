@@ -51,12 +51,11 @@ public class ServerClassifica {
         server.createContext("/classifica", exchange -> {
             String risposta;
             try {
-                int righe = database.contaRigheClassifica();
                 String classifica = database.leggiClassificaFormattata();
                 if (classifica == null || classifica.isBlank()) {
-                    risposta = "Nessun dato nella classifica. [righe=" + righe + "]";
+                    risposta = "Nessun dato nella classifica.";
                 } else {
-                    risposta = "Righe presenti: " + righe + "\n" + classifica;
+                    risposta = classifica;
                 }
             } catch (Exception e) {
                 risposta = "Errore del server: " + e.getMessage();
